@@ -19,6 +19,17 @@ main_program {
 
 	turtleSim();
 	
+	forward(1000);
+	right(180);
+	penUp();
+	forward(1000);
+	penDown();
+	forward(1000);
+	right(180);
+	penUp();
+	forward(1000);
+	penDown();
+	
 	penUp();
 	right(180);
 	forward(pow(velocity, 2)*sine(2*theta)/(2*g));
