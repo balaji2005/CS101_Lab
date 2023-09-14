@@ -10,7 +10,6 @@ main_program {
 	cout << "Enter the length of first side: ";
 	cin >> length;
 	
-	
 	float angle = 90;
 	int index = 1;
 	
