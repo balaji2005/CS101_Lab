@@ -2,18 +2,31 @@
 
 main_program {
 	turtleSim();
-	
-	repeat(10) {
-		forward(30);
+	double a = 100;
+	double b = 60;
+	forward(b);
+	left(90);
+	forward(a);
+	left(90);
+	forward(b);
+	left(90);
+	forward(a);
+	left(90);
+	right(10);
+	double x = (b-a*sine(10))/cosine(10);
+	double y = sqrt(a*a + x*x - b*b);
+	repeat(5) {
+		forward(b);
 		left(90);
-		forward(100);
+		forward(a);
 		left(90);
-		forward(60);
-		left(90);
-		forward(100);
-		left(90);
-		forward(30);
-		left(10);
+		forward(b - x);
+		left(100);
+		forward(y);
+		right(90);
+		forward(b);
+		// cout << "HI" << endl;
+		right(200);
 	}
 	
 	wait(5);
