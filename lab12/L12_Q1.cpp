@@ -36,6 +36,7 @@ int main() {
                 case 8: strcat(s, "Eight hundred "); break;
                 case 9: strcat(s, "Nine hundred "); break;
             }
+            // strcat(s, "and ");
             switch(digit(a, 2)) {
                 case 1:
                     switch(digit(a, 1)) {
@@ -48,12 +49,13 @@ int main() {
                         case 7: strcat(s, "seventeen"); break;
                         case 8: strcat(s, "eighteen"); break;
                         case 9: strcat(s, "ninteen"); break;
+                        case 0: strcat(s, "ten"); break;
                     }
                     break;
                 case 2: strcat(s, "twenty "); break;
                 case 3: strcat(s, "thirty "); break;
                 case 4: strcat(s, "forty "); break;
-                case 5: strcat(s, "sifty "); break;
+                case 5: strcat(s, "fifty "); break;
                 case 6: strcat(s, "sixty "); break;
                 case 7: strcat(s, "seventy "); break;
                 case 8: strcat(s, "eighty "); break;
@@ -86,6 +88,7 @@ int main() {
                         case 7: strcat(s, "Seventeen "); break;
                         case 8: strcat(s, "Eighteen "); break;
                         case 9: strcat(s, "Ninteen "); break;
+                        case 0: strcat(s, "Ten");
                     }
                     break;
                 case 2: strcat(s, "Twenty "); break;
