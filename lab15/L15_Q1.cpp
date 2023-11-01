@@ -30,6 +30,13 @@ struct Polynomial {
         for (i=0; i<= ma; i++) {
             r.coeff[i] = coeff[i] + p.coeff[i];
         }
+        for (int i=ma; i>=0; i--) {
+            cout << i << r.coeff[i] << '\n';
+            if (abs(r.coeff[i]) > 1e-5) {
+                r.degree = i;
+                break;
+            }
+        }
         return r;
     }
 
@@ -40,6 +47,14 @@ struct Polynomial {
         int i;
         for (i=0; i<= ma; i++) {
             r.coeff[i] = coeff[i] - p.coeff[i];
+        }
+        for (int i=ma; i>=0; i--) {
+            cout << i << '\n';
+            if (abs(r.coeff[i]) > 1e-5) {
+                r.degree = i;
+                cout << "Degree = " << i << '\n';
+                break;
+            }
         }
         return r;
     }
@@ -53,11 +68,19 @@ struct Polynomial {
                 r.coeff[i] += coeff[j]*coeff[i-j];
             }
         }
+        for (int i=ma; i>=0; i--) {
+            cout << r.coeff[i] << '\n';
+            if (abs(r.coeff[i]) > 1e-5) {
+                r.degree = i;
+                break;
+            }
+        }
         return r;
     }
 
     void print() {
-        if (degree >= 1) {
+        cout << "Degree = " << degree << ' ' << coeff[degree] << '\n';
+        if (degree > 1) {
             if (abs(coeff[degree] - 1) < 1e-5) {
                 cout << "x^" << degree;
             } else {
@@ -80,16 +103,32 @@ struct Polynomial {
             }
         }
         if (coeff[1] > 0) {
-            if (abs(coeff[1] - 1) < 1e-5) {
-                cout << " + " << "x";
+            if (degree > 1) {
+                if (abs(coeff[1] - 1) < 1e-5) {
+                    cout << " + " << "x";
+                } else {
+                    cout << " + " << coeff[1] << "x";
+                }
             } else {
-                cout << " + " << coeff[1] << "x";
+                if (abs(coeff[1] - 1) < 1e-5) {
+                    cout << "x";
+                } else {
+                    cout << coeff[1] << "x";
+                }
             }
         } else if (coeff[1] < 0) {
-            if (abs(coeff[1] + 1) < 1e-5) {
-                cout << " - " << "x";
+            if (degree > 1) {
+                if (abs(coeff[1] - 1) < 1e-5) {
+                    cout << " - " << "x";
+                } else {
+                    cout << " - " << -coeff[1] << "x";
+                }
             } else {
-                cout << " - " << -coeff[1] << "x";
+                if (abs(coeff[1] - 1) < 1e-5) {
+                    cout << "- x";
+                } else {
+                    cout << "- " << -coeff[1] << "x";
+                }
             }
         }
         if (coeff[0] > 0) {
