@@ -57,10 +57,12 @@ struct Polynomial {
     }
 
     void print() {
-        if (abs(coeff[degree] - 1) < 1e-5) {
-            cout << "x^" << degree;
-        } else {
-            cout << coeff[degree] << "x^" << degree;
+        if (degree >= 1) {
+            if (abs(coeff[degree] - 1) < 1e-5) {
+                cout << "x^" << degree;
+            } else {
+                cout << coeff[degree] << "x^" << degree;
+            }
         }
         for(int i=degree-1; i>1; i--) {
             if (coeff[i] > 0) {
@@ -94,6 +96,9 @@ struct Polynomial {
             cout << " + " << coeff[0] << '\n';
         } else if (coeff[0] < 0) {
             cout << " - " << -coeff[0] << '\n';
+        } else {
+            if (degree == 0) cout << 0;
+            cout << '\n';
         }
     }
 
