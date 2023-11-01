@@ -30,12 +30,16 @@ struct Polynomial {
         for (i=0; i<= ma; i++) {
             r.coeff[i] = coeff[i] + p.coeff[i];
         }
+        bool found = false;
         for (int i=ma; i>=0; i--) {
-            cout << i << r.coeff[i] << '\n';
+            // cout << i << r.coeff[i] << '\n';
             if (abs(r.coeff[i]) > 1e-5) {
                 r.degree = i;
                 break;
             }
+        }
+        if (!found) {
+            r.degree = 0;
         }
         return r;
     }
@@ -48,38 +52,47 @@ struct Polynomial {
         for (i=0; i<= ma; i++) {
             r.coeff[i] = coeff[i] - p.coeff[i];
         }
+        bool found = false;
         for (int i=ma; i>=0; i--) {
-            cout << i << '\n';
+            // cout << i << '\n';
             if (abs(r.coeff[i]) > 1e-5) {
                 r.degree = i;
-                cout << "Degree = " << i << '\n';
+                // cout << "Degree = " << i << '\n';
                 break;
             }
+        }
+        if (!found) {
+            r.degree = 0;
         }
         return r;
     }
 
     Polynomial operator*(Polynomial &p) {
         Polynomial r;
-        int ma = degree*p.degree;
+        int ma = degree + p.degree;
         r.degree = ma;
         for (int i=0; i<=ma; i++) {
             for (int j=0; j<=i; j++) {
                 r.coeff[i] += coeff[j]*coeff[i-j];
             }
         }
+        bool found = false;
         for (int i=ma; i>=0; i--) {
-            cout << r.coeff[i] << '\n';
+            // cout << r.coeff[i] << '\n';
             if (abs(r.coeff[i]) > 1e-5) {
                 r.degree = i;
+                found = true;
                 break;
             }
+        }
+        if (!found) {
+            r.degree = 0;
         }
         return r;
     }
 
     void print() {
-        cout << "Degree = " << degree << ' ' << coeff[degree] << '\n';
+        // cout << "Degree = " << degree << ' ' << coeff[degree] << '\n';
         if (degree > 1) {
             if (abs(coeff[degree] - 1) < 1e-5) {
                 cout << "x^" << degree;
@@ -151,9 +164,6 @@ struct Polynomial {
 };
 
 int main() {
-    // Polynomial 
-    // p.print();p;
-    // p.read();
     Polynomial q;
     q.read();
     Polynomial p;
