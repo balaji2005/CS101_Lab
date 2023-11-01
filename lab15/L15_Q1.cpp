@@ -67,12 +67,25 @@ struct Polynomial {
         }
         if (coeff[0] > 0) {
             cout << " + " << coeff[degree] << '\n';
-        } else if (coeff[i] < 0) {
+        } else if (coeff[0] < 0) {
             cout << " - " << -coeff[degree] << '\n';
         }
     }
 
     void read() {
-        cout << "Enter the degree: " << '\n'
+        cout << "Enter the degree: " << '\n';
+        int degree; cin >> degree;
+        Polynomial p;
+        p.degree = degree;
+        for (int i=degree; i>=0; i--) {
+            cin >> p.coeff[i];
+        }
+        p.print();
     }
 };
+
+int main() {
+    Polynomial p;
+    p.read();
+    p.print();
+}
