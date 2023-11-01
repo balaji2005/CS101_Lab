@@ -57,35 +57,64 @@ struct Polynomial {
     }
 
     void print() {
-        cout << coeff[degree] << "x^" << degree;
-        for(int i=degree-1; i>0; i--) {
+        if (abs(coeff[degree] - 1) < 1e-5) {
+            cout << "x^" << degree;
+        } else {
+            cout << coeff[degree] << "x^" << degree;
+        }
+        for(int i=degree-1; i>1; i--) {
             if (coeff[i] > 0) {
-                cout << " + " << coeff[degree] << "x^" << i;
+                if (abs(coeff[i] - 1) < 1e-5) {
+                    cout << " + " << "x^" << i;
+                } else {
+                    cout << " + " << coeff[i] << "x^" << i;
+                }
             } else if (coeff[i] < 0) {
-                cout << " - " << -coeff[degree] << "x" << i;
+                if (abs(coeff[i] + 1) < 1e-5) {
+                    cout << " - " << "x^" << i;
+                } else {
+                    cout << " - " << -coeff[i] << "x^" << i;
+                }
+            }
+        }
+        if (coeff[1] > 0) {
+            if (abs(coeff[1] - 1) < 1e-5) {
+                cout << " + " << "x";
+            } else {
+                cout << " + " << coeff[1] << "x";
+            }
+        } else if (coeff[1] < 0) {
+            if (abs(coeff[1] + 1) < 1e-5) {
+                cout << " - " << "x";
+            } else {
+                cout << " - " << -coeff[1] << "x";
             }
         }
         if (coeff[0] > 0) {
-            cout << " + " << coeff[degree] << '\n';
+            cout << " + " << coeff[0] << '\n';
         } else if (coeff[0] < 0) {
-            cout << " - " << -coeff[degree] << '\n';
+            cout << " - " << -coeff[0] << '\n';
         }
     }
 
     void read() {
-        cout << "Enter the degree: " << '\n';
-        int degree; cin >> degree;
-        Polynomial p;
-        p.degree = degree;
+        cout << "Enter the degree: ";
+        cin >> degree;
         for (int i=degree; i>=0; i--) {
-            cin >> p.coeff[i];
+            cin >> coeff[i];
         }
-        p.print();
     }
 };
 
 int main() {
+    // Polynomial 
+    // p.print();p;
+    // p.read();
+    Polynomial q;
+    q.read();
     Polynomial p;
     p.read();
-    p.print();
+    Polynomial a = p + q; a.print();
+    Polynomial b = p - q; b.print();
+    Polynomial c = p * q; c.print();
 }
