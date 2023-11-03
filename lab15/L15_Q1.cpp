@@ -161,14 +161,23 @@ struct Polynomial {
             cin >> coeff[i];
         }
     }
+
+    friend ostream & operator << (ostream & ost, Polynomial &p) {
+        p.print();
+        return ost;
+    }
+
+    friend istream & operator >> (istream & ist, Polynomial &p) {
+        p.read();
+        return ist;
+    }
 };
 
 int main() {
-    Polynomial q;
-    q.read();
-    Polynomial p;
-    p.read();
-    Polynomial a = p + q; a.print();
-    Polynomial b = p - q; b.print();
-    Polynomial c = p * q; c.print();
+    Polynomial q, p;
+    cin >> p >> q;
+    Polynomial a = p + q;
+    Polynomial b = p - q;
+    Polynomial c = p * q;
+    cout << a << b << c << '\n';
 }
